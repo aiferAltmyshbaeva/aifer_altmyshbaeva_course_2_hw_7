@@ -48,9 +48,9 @@
 
             <com.google.android.material.button.MaterialButton
                 android:layout_marginHorizontal="18dp"
-                android:text="@string/erase"
+                android:text="@string/switch_sign"
                 style="@style/Gray.Button"
-                android:id="@+id/btn_erase"/>
+                android:id="@+id/btn_switch_sign"/>
 
             <com.google.android.material.button.MaterialButton
                 android:layout_marginEnd="18dp"
