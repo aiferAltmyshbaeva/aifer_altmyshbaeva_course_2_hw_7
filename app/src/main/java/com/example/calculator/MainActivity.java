@@ -45,12 +45,12 @@ public class MainActivity extends AppCompatActivity {
         tvResult = findViewById(R.id.tv_result);
         btnGoNextActivity = findViewById(R.id.btn_go_next_activity);
         btnGoNextActivity.setVisibility(View.INVISIBLE);
-        btnGoNextActivity.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ResultActivity.class);
-            String result = tvResult.getText().toString();
-            intent.putExtra("result", result);
-            startActivity(intent);
-        });
+//        btnGoNextActivity.setOnClickListener(v -> {
+//            Intent intent = new Intent(MainActivity.this);
+//            String result = tvResult.getText().toString();
+//            intent.putExtra("result", result);
+//            startActivity(intent);
+//        });
     }
 
     public void onNumberClick(View view) {
