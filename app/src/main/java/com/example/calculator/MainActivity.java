@@ -2,18 +2,22 @@ package com.example.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView textView;
+    private TextView tvResult;
     private Boolean isOperationClick;
     private Double first, second;
     private String operation = "";
+
+    private Button btnGoNextActivity;
 
     private static Map<Object, KeyPressedStrategy> btnKey = new HashMap<>();
 
@@ -29,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         btnKey.put(R.id.btn_9, new KeyPressedStrategy("9"));
         btnKey.put(R.id.btn_zero, new KeyPressedStrategy("0"));
         btnKey.put(R.id.btn_dot, new KeyPressedStrategy(() -> {
-            if (!textView.getText().toString().endsWith(".")) return ".";
+            if (!tvResult.getText().toString().endsWith(".")) return ".";
             return "";
         }));
     }
@@ -38,7 +42,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.tv_result);
+        tvResult = findViewById(R.id.tv_result);
+        btnGoNextActivity = findViewById(R.id.btn_go_next_activity);
+        btnGoNextActivity.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+            String result = tvResult.getText().toString();
+            intent.putExtra("result", result);
+            startActivity(intent);
+        });
     }
 
     public void onNumberClick(View view) {
@@ -50,38 +61,38 @@ public class MainActivity extends AppCompatActivity {
         Double result = 0.0;
 
         if (id == R.id.btn_ac) {
-            textView.setText("0");
+            tvResult.setText("0");
             first = 0.0;
             second = 0.0;
         }
 
         if (id == R.id.btn_plus) {
             operation = "+";
-            first = Double.parseDouble(textView.getText().toString());
+            first = Double.parseDouble(tvResult.getText().toString());
             isOperationClick = true;
         } else if (id == R.id.btn_minus) {
             operation = "-";
-            first = Double.parseDouble(textView.getText().toString());
+            first = Double.parseDouble(tvResult.getText().toString());
             isOperationClick = true;
         } else if (id == R.id.btn_multiplication) {
             operation = "×";
-            first = Double.parseDouble(textView.getText().toString());
+            first = Double.parseDouble(tvResult.getText().toString());
             isOperationClick = true;
         } else if (id == R.id.btn_division) {
             operation = "÷";
-            first = Double.parseDouble(textView.getText().toString());
+            first = Double.parseDouble(tvResult.getText().toString());
             isOperationClick = true;
         } else if (id == R.id.btn_switch_sign) {
-            first = Double.parseDouble(textView.getText().toString());
+            first = Double.parseDouble(tvResult.getText().toString());
             result = (-1) * first;
             if (result % 1 == 0) {
-                textView.setText(String.valueOf(result.intValue()));
+                tvResult.setText(String.valueOf(result.intValue()));
             } else {
-                textView.setText(result.toString());
+                tvResult.setText(result.toString());
             }
             isOperationClick = true;
         } else if (id == R.id.btn_percent) {
-            second = Double.parseDouble(textView.getText().toString());
+            second = Double.parseDouble(tvResult.getText().toString());
             double percent = first * second / 100;
             switch (operation) {
                 case "+":
@@ -98,13 +109,13 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
             if (result % 1 == 0) {
-                textView.setText(String.valueOf(result.intValue()));
+                tvResult.setText(String.valueOf(result.intValue()));
             } else {
-                textView.setText(result.toString());
+                tvResult.setText(result.toString());
             }
             isOperationClick = true;
         } else if (id == R.id.btn_equal) {
-            second = Double.parseDouble(textView.getText().toString());
+            second = Double.parseDouble(tvResult.getText().toString());
             switch (operation) {
                 case "+":
                     result = first + second;
@@ -120,9 +131,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
             if (result % 1 == 0) {
-                textView.setText(String.valueOf(result.intValue()));
+                tvResult.setText(String.valueOf(result.intValue()));
             } else {
-                textView.setText(result.toString());
+                tvResult.setText(result.toString());
             }
             isOperationClick = true;
         }
@@ -130,12 +141,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void setNumber(Object key) {
         KeyPressedStrategy number = btnKey.get(key);
-        String currentValue = textView.getText().toString();
+        String currentValue = tvResult.getText().toString();
 
         if (currentValue.equals("0") || isOperationClick) {
-            textView.setText(number.getValue());
+            tvResult.setText(number.getValue());
         } else {
-            textView.append(number.getValue());
+            tvResult.append(number.getValue());
         }
         isOperationClick = false;
     }
