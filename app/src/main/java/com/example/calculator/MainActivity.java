@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tvResult = findViewById(R.id.tv_result);
         btnGoNextActivity = findViewById(R.id.btn_go_next_activity);
+        btnGoNextActivity.setVisibility(View.INVISIBLE);
         btnGoNextActivity.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, ResultActivity.class);
             String result = tvResult.getText().toString();
@@ -54,11 +55,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void onNumberClick(View view) {
         setNumber(view.getId());
+        btnGoNextActivity.setVisibility(View.INVISIBLE);
     }
 
     public void onOperationClick(View view) {
         int id = view.getId();
         Double result = 0.0;
+        int visibility = View.INVISIBLE;
 
         if (id == R.id.btn_ac) {
             tvResult.setText("0");
@@ -116,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
             isOperationClick = true;
         } else if (id == R.id.btn_equal) {
             second = Double.parseDouble(tvResult.getText().toString());
+            visibility = View.VISIBLE;
             switch (operation) {
                 case "+":
                     result = first + second;
@@ -137,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
             }
             isOperationClick = true;
         }
+        btnGoNextActivity.setVisibility(visibility);
     }
 
     private void setNumber(Object key) {
