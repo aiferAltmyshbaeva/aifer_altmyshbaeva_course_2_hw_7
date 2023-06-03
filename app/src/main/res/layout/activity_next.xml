@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray"
+    tools:context=".NextActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintBottom_toTopOf="@id/tv_policies"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/container_top_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/asphalt_gray"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/ic_menu"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_menu"
+            app:layout_constraintBottom_toBottomOf="@id/container_top_menu"
+            app:layout_constraintStart_toStartOf="@id/container_top_menu"
+            app:layout_constraintTop_toTopOf="@id/container_top_menu" />
+
+        <ImageView
+            android:id="@+id/img_app_icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_app_icon"
+            app:layout_constraintBottom_toBottomOf="@id/container_top_menu"
+            app:layout_constraintTop_toTopOf="@id/container_top_menu"
+            app:layout_constraintEnd_toEndOf="@id/container_top_menu"
+            app:layout_constraintStart_toStartOf="@id/container_top_menu" />
+
+        <ImageView
+            android:id="@+id/ic_search"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="@id/container_top_menu"
+            app:layout_constraintEnd_toEndOf="@id/container_top_menu"
+            app:layout_constraintTop_toTopOf="@id/container_top_menu" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_policies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/policies"
+        android:textColor="@color/asphalt_gray"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container_top_menu" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/container_policies_btns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="18dp"
+        android:layout_marginVertical="30dp"
+        app:layout_constraintBottom_toTopOf="@id/tv_next_result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_policies">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_policy"
+            style="@style/Policy.Button"
+            android:text="@string/policy" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_product_category"
+            style="@style/Policy.Button"
+            android:text="@string/product_category" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_origin_country"
+            style="@style/Policy.Button"
+            android:text="@string/origin_country" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_brand"
+            style="@style/Policy.Button"
+            android:text="@string/brand" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:id="@+id/tv_next_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/current_policies"
+        android:textColor="@color/asphalt_gray"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/btn_finish_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container_policies_btns" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_finish_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:backgroundTint="@color/flamingo"
+        android:paddingHorizontal="45dp"
+        android:paddingVertical="15dp"
+        android:text="@string/export_as_csv"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:cornerRadius="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_next_result" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

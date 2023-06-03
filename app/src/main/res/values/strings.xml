@@ -28,4 +28,12 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="title_activity_result">ResultActivity</string>
+    <string name="current_policies">Current Policies</string>
+    <string name="export_as_csv">Export as CSV</string>
+    <string name="policies">Policies</string>
+    <string name="policy">Policy</string>
+    <string name="product_category">Product Category</string>
+    <string name="origin_country">Origin Country</string>
+    <string name="brand">Brand</string>
 </resources>
